@@ -9,12 +9,19 @@ const SignUpPage = () => {
   });
 
   const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
   useEffect(() => {
     if (!signUpdata.email.includes('@')) {
       setEmailError('이메일에는 @가 포함되어야 합니다.');
     } else {
       setEmailError('유효한 이메일 입니다 :)');
+    }
+
+    if (signUpdata.password.length < 8) {
+      setPasswordError('패스워드는 8자 이상이어야 합니다.');
+    } else {
+      setPasswordError('유효한 패스워드 입니다 :)');
     }
   }, [signUpdata]);
 
@@ -39,6 +46,7 @@ const SignUpPage = () => {
           onChange={onChangeSignUpData}
           data-testid="password-input"
         />
+        {passwordError && <div>{passwordError}</div>}
 
         <button type="submit" data-testid="signup-button">
           Sign up

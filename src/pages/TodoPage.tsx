@@ -17,7 +17,6 @@ const TodoPage = () => {
   const navigate = useNavigate();
   const [todos, setTodos] = useState([]);
   const [todoData, onChangeTodoData, setTodoData] = useInputs({ todo: '' });
-  const [isUpdate, setIsUpdate] = useState<boolean[]>([]);
 
   useEffect(() => {
     if (!token.getToken(ACCESS_TOKEN_KEY)) navigate('/signin');
@@ -67,7 +66,7 @@ const TodoPage = () => {
       {todos.length === 0 ? (
         <div>todos is empty :(</div>
       ) : (
-        todos.map((todo: ITodo, index: number) => (
+        todos.map((todo: ITodo) => (
           <Todo key={todo.id} todo={todo} onChangeTodos={onChangeTodos} onClickDeleteButton={onClickDeleteButton} />
         ))
       )}

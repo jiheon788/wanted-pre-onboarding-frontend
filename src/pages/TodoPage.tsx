@@ -58,7 +58,13 @@ const TodoPage = () => {
   return (
     <>
       <form onSubmit={onCreate}>
-        <input data-testid="new-todo-input" name="todo" value={todoData.todo} onChange={onChangeTodoData} />
+        <input
+          data-testid="new-todo-input"
+          placeholder="할 일을 입력해주세요."
+          name="todo"
+          value={todoData.todo}
+          onChange={onChangeTodoData}
+        />
         <button type="submit" data-testid="new-todo-add-button">
           추가
         </button>
@@ -67,7 +73,13 @@ const TodoPage = () => {
         <div>todos is empty :(</div>
       ) : (
         todos.map((todo: ITodo) => (
-          <Todo key={todo.id} todo={todo} onChangeTodos={onChangeTodos} onClickDeleteButton={onClickDeleteButton} />
+          <Todo
+            key={todo.id}
+            todo={todo}
+            onChangeTodos={onChangeTodos}
+            onClickDeleteButton={onClickDeleteButton}
+            loadTodos={loadTodos}
+          />
         ))
       )}
     </>

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 type DefaultType = {
-  [key: string]: string | number;
+  [key: string]: any;
 };
 
 type ReturnTypes = [

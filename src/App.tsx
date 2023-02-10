@@ -1,3 +1,4 @@
+import '@/assets/css/App.css';
 import React from 'react';
 import Nav from '@/components/Nav';
 import Router from './Router';

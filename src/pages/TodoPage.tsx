@@ -56,33 +56,42 @@ const TodoPage = () => {
   };
 
   return (
-    <>
-      <form onSubmit={onCreate}>
-        <input
-          data-testid="new-todo-input"
-          placeholder="할 일을 입력해주세요."
-          name="todo"
-          value={todoData.todo}
-          onChange={onChangeTodoData}
-        />
-        <button type="submit" data-testid="new-todo-add-button">
-          추가
-        </button>
-      </form>
-      {todos.length === 0 ? (
-        <div>todos is empty :(</div>
-      ) : (
-        todos.map((todo: ITodo) => (
-          <Todo
-            key={todo.id}
-            todo={todo}
-            onChangeTodos={onChangeTodos}
-            onClickDeleteButton={onClickDeleteButton}
-            loadTodos={loadTodos}
-          />
-        ))
-      )}
-    </>
+    <div className="container my-5">
+      <h1 className="display-5 fw-bold">Todos</h1>
+      <div className="col-lg-7 p-3 p-lg-5 pt-lg-3">
+        <form onSubmit={onCreate}>
+          <div className="input-group mb-3">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="할 일을 입력해주세요."
+              data-testid="new-todo-input"
+              name="todo"
+              value={todoData.todo}
+              onChange={onChangeTodoData}
+            />
+            <button className="btn btn-dark" type="submit" data-testid="new-todo-add-button">
+              추가
+            </button>
+          </div>
+        </form>
+        <ul className="list-group w-auto">
+          {todos.length === 0 ? (
+            <div>todos is empty :(</div>
+          ) : (
+            todos.map((todo: ITodo) => (
+              <Todo
+                key={todo.id}
+                todo={todo}
+                onChangeTodos={onChangeTodos}
+                onClickDeleteButton={onClickDeleteButton}
+                loadTodos={loadTodos}
+              />
+            ))
+          )}
+        </ul>
+      </div>
+    </div>
   );
 };
 

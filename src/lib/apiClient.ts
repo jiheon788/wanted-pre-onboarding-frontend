@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { ACCESS_TOKEN_KEY } from '@/constants/token.contant';
-import token from '@/lib/Token';
+import token from './token';
 
 const host = 'https://pre-onboarding-selection-task.shop';
 const jwtToken = token.getToken(ACCESS_TOKEN_KEY);
 
-const CustomAxios = axios.create({
+const apiClient = axios.create({
   baseURL: host,
   headers: {
     Authorization: jwtToken ? `Bearer ${jwtToken}` : '',
@@ -15,7 +15,7 @@ const CustomAxios = axios.create({
 /**
  * 디버깅 코드
  */
-CustomAxios.interceptors.response.use(
+apiClient.interceptors.response.use(
   (response) => {
     console.log('response success: ', response);
     return response;
@@ -26,4 +26,4 @@ CustomAxios.interceptors.response.use(
   },
 );
 
-export default CustomAxios;
+export default apiClient;

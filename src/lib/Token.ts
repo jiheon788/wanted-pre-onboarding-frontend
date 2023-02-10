@@ -12,4 +12,5 @@ class Token {
   }
 }
 
-export default new Token();
+const token = new Token();
+export default token;

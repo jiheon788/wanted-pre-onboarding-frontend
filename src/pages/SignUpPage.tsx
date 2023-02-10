@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import useInputs from '@/lib/hooks/useInputs';
+import { postSignUp } from '@/repositories/auth/authRepository';
+import { useNavigate } from 'react-router-dom';
 
 const SignUpPage = () => {
+  const navigate = useNavigate();
   const [signUpdata, onChangeSignUpData] = useInputs({
     email: '',
     password: '',
-    confirmationPassword: '',
   });
 
   const [emailError, setEmailError] = useState({
@@ -43,10 +45,22 @@ const SignUpPage = () => {
     }
   }, [signUpdata]);
 
+  const onSignUp = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    postSignUp(signUpdata)
+      .then((res) => {
+        alert('회원가입이 성공하였습니다.');
+        navigate('/signin');
+      })
+      .catch((err) => {
+        alert(err.response.data.message || err.message);
+      });
+  };
+
   return (
     <>
       <h1>SignUp</h1>
-      <form>
+      <form onSubmit={onSignUp}>
         <input
           type="text"
           placeholder="이메일을 입력해주세요"

@@ -1,5 +1,5 @@
 import apiClient from '@/lib/apiClient';
-import { createTodoParam, updateTodoParam } from './todosReposiroty.param';
+import { createTodoParam, deleteTodoParam, updateTodoParam } from './todosReposiroty.param';
 
 export const getTodos = async () => {
   return await apiClient({
@@ -26,5 +26,12 @@ export const updateTodo = async ({ todo, isCompleted, id }: updateTodoParam) => 
       todo,
       isCompleted,
     },
+  });
+};
+
+export const deleteTodo = async ({ id }: deleteTodoParam) => {
+  return await apiClient({
+    method: 'delete',
+    url: `/todos/${id}`,
   });
 };

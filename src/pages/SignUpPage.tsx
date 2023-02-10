@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import useInputs from '@/lib/hooks/useInputs';
 import { postSignUp } from '@/repositories/auth/authRepository';
 import { useNavigate } from 'react-router-dom';
+import token from '@/lib/token';
+import { ACCESS_TOKEN_KEY } from '@/constants/token.contant';
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -56,6 +58,10 @@ const SignUpPage = () => {
         alert(err.response.data.message || err.message);
       });
   };
+
+  useEffect(() => {
+    if (token.getToken(ACCESS_TOKEN_KEY)) navigate('/todo');
+  }, []);
 
   return (
     <>

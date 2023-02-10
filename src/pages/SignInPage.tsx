@@ -61,6 +61,10 @@ const SignInpage = () => {
       });
   };
 
+  useEffect(() => {
+    if (token.getToken(ACCESS_TOKEN_KEY)) navigate('/todo');
+  }, []);
+
   return (
     <>
       <h1>SignIn</h1>

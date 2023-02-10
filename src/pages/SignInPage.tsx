@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import useInputs from '@/lib/hooks/useInputs';
 import { postSignIn } from '@/repositories/auth/authRepository';
 import { useNavigate } from 'react-router-dom';
+import token from '@/lib/token';
+import { ACCESS_TOKEN_KEY } from '@/constants/token.contant';
 
 const SignInpage = () => {
   const navigate = useNavigate();
@@ -51,6 +53,7 @@ const SignInpage = () => {
     postSignIn(signInData)
       .then((res) => {
         alert(res.statusText);
+        token.setToken(ACCESS_TOKEN_KEY, res.data.access_token);
         navigate('/todo');
       })
       .catch((err) => {

@@ -1,5 +1,5 @@
 import apiClient from '@/lib/apiClient';
-import { createTodoParam } from './todosReposiroty.param';
+import { createTodoParam, updateTodoParam } from './todosReposiroty.param';
 
 export const getTodos = async () => {
   return await apiClient({
@@ -8,10 +8,23 @@ export const getTodos = async () => {
   });
 };
 
-export const createTodo = async (data: createTodoParam) => {
+export const createTodo = async ({ todo }: createTodoParam) => {
   return await apiClient({
     method: 'post',
     url: '/todos',
-    data,
+    data: {
+      todo,
+    },
+  });
+};
+
+export const updateTodo = async ({ todo, isCompleted, id }: updateTodoParam) => {
+  return await apiClient({
+    method: 'put',
+    url: `/todos/${id}`,
+    data: {
+      todo,
+      isCompleted,
+    },
   });
 };

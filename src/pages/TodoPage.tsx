@@ -1,3 +1,4 @@
+import Todo from '@/components/Todo';
 import { ACCESS_TOKEN_KEY } from '@/constants/token.contant';
 import useInputs from '@/lib/hooks/useInputs';
 import token from '@/lib/token';
@@ -5,7 +6,7 @@ import { createTodo, deleteTodo, getTodos, updateTodo } from '@/repositories/tod
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-interface ITodo {
+export interface ITodo {
   id: number;
   todo: string;
   isCompleted: boolean;
@@ -57,7 +58,13 @@ const TodoPage = () => {
   return (
     <>
       <form onSubmit={onCreate}>
-        <input data-testid="new-todo-input" name="todo" value={todoData.todo} onChange={onChangeTodoData} />
+        <input
+          data-testid="new-todo-input"
+          placeholder="할 일을 입력해주세요."
+          name="todo"
+          value={todoData.todo}
+          onChange={onChangeTodoData}
+        />
         <button type="submit" data-testid="new-todo-add-button">
           추가
         </button>
@@ -65,17 +72,14 @@ const TodoPage = () => {
       {todos.length === 0 ? (
         <div>todos is empty :(</div>
       ) : (
-        todos.map((todo: ITodo, index: number) => (
-          <li key={index}>
-            <label>
-              <input type="checkbox" checked={todo.isCompleted} onChange={() => onChangeTodos(todo)} />
-              <span>{todo.todo}</span>
-            </label>
-            <button data-testid="modify-button">수정</button>
-            <button data-testid="delete-button" onClick={() => onClickDeleteButton(todo.id)}>
-              삭제
-            </button>
-          </li>
+        todos.map((todo: ITodo) => (
+          <Todo
+            key={todo.id}
+            todo={todo}
+            onChangeTodos={onChangeTodos}
+            onClickDeleteButton={onClickDeleteButton}
+            loadTodos={loadTodos}
+          />
         ))
       )}
     </>

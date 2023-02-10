@@ -1,11 +1,17 @@
 # Requirements
-> [과제 요구사항](https://github.com/walking-sunset/selection-task)
+> [과제 가이드라인](https://github.com/walking-sunset/selection-task)
 
 ## Assignment 1
-- [ ] 회원가입과 로그인 페이지
+- [x] 회원가입과 로그인 페이지 (`/signup`, `/signin` 경로)
 - [ ] 이메일 조건: @ 포함
 - [ ] 비밀번호 조건: 8자 이상
 - [ ] 입력된 이메일과 비밀번호가 유효성 검사를 통과하지 못한다면 button에 `disabled` 속성을 부여
+
+```html
+<input data-testid="email-input" />
+<input data-testid="password-input" />
+<button data-testid="signup-button">회원가입</button>
+```
 
 ## Assignment 2
 - [ ] 회원가입 페이지에서 버튼을 클릭 시 회원가입을 진행

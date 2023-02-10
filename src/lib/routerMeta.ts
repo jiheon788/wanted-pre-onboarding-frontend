@@ -12,12 +12,17 @@ const routerMeta: RouterMetaType = {
   HomePage: {
     name: '홈',
     path: '/',
-    isShow: false,
+    isShow: true,
   },
-  AuthPage: {
+  SignInPage: {
     name: '로그인',
-    path: '/auth',
-    isShow: false,
+    path: '/signin',
+    isShow: true,
+  },
+  SignUpPage: {
+    name: '회원가입',
+    path: '/signup',
+    isShow: true,
   },
 };
 

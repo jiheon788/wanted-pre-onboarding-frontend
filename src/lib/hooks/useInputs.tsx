@@ -4,7 +4,11 @@ type DefaultType = {
   [key: string]: string | number;
 };
 
-type ReturnTypes = [any, (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => void];
+type ReturnTypes = [
+  any,
+  (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => void,
+  (values: any) => void,
+];
 
 const useInputs = (initialValue: DefaultType): ReturnTypes => {
   const [values, setValues] = useState(initialValue);
@@ -16,7 +20,7 @@ const useInputs = (initialValue: DefaultType): ReturnTypes => {
     });
   };
 
-  return [values, onChange];
+  return [values, onChange, setValues];
 };
 
 export default useInputs;

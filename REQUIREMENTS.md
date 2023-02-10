@@ -3,9 +3,9 @@
 
 ## Assignment 1
 - [x] 회원가입과 로그인 페이지 (`/signup`, `/signin` 경로)
-- [ ] 이메일 조건: @ 포함
-- [ ] 비밀번호 조건: 8자 이상
-- [ ] 입력된 이메일과 비밀번호가 유효성 검사를 통과하지 못한다면 button에 `disabled` 속성을 부여
+- [x] 이메일 조건: @ 포함
+- [] 비밀번호 조건: 8자 이상
+- [] 입력된 이메일과 비밀번호가 유효성 검사를 통과하지 못한다면 button에 `disabled` 속성을 부여
 
 ```html
 <input data-testid="email-input" />

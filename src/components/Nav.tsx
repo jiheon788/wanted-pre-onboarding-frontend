@@ -1,7 +1,15 @@
+import { ACCESS_TOKEN_KEY } from '@/constants/token.contant';
 import routerMeta, { IRouterMeta } from '@/lib/routerMeta';
-import { NavLink } from 'react-router-dom';
+import token from '@/lib/token';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Nav = () => {
+  const navigate = useNavigate();
+  const onLogout = () => {
+    token.removeToken(ACCESS_TOKEN_KEY);
+    navigate('/signin');
+  };
+
   return (
     <nav>
       <ul className="nav-menus">
@@ -17,6 +25,15 @@ const Nav = () => {
               </li>
             );
         })}
+        {token.getToken(ACCESS_TOKEN_KEY) ? (
+          <li>
+            <button type="button" onClick={onLogout}>
+              로그아웃
+            </button>
+          </li>
+        ) : (
+          <></>
+        )}
       </ul>
     </nav>
   );

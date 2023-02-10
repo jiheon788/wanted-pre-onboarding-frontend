@@ -25,17 +25,27 @@ const Todo = ({ todo, onChangeTodos, onClickDeleteButton, loadTodos }: ITodoProp
   };
 
   return (
-    <li className="list-group-item d-flex gap-3">
+    <li className="list-group-item d-flex justify-content-between align-items-center">
       {isUpdate ? (
-        <form onSubmit={onUpdate} className="d-flex gap-2">
-          <label className="d-flex gap-3">
+        <form
+          onSubmit={onUpdate}
+          className="d-flex justify-content-between align-items-center"
+          style={{ width: '100%' }}
+        >
+          <label className="d-flex gap-3 align-items-center" style={{ width: '80%' }}>
             <input
               type="checkbox"
               className="form-check-input flex-shrink-0"
               checked={todo.isCompleted}
               onChange={() => onChangeTodos(todo)}
             />
-            <input data-testid="modify-input" name="todo" value={todoEdit.todo} onChange={onChangeTodoEdit} />
+            <input
+              data-testid="modify-input"
+              className="form-control"
+              name="todo"
+              value={todoEdit.todo}
+              onChange={onChangeTodoEdit}
+            />
           </label>
           <div className="btn-group" role="group" aria-label="Basic mixed styles example">
             <button type="submit" className="btn btn-outline-dark btn-sm" data-testid="submit-button">

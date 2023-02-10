@@ -58,7 +58,7 @@ const TodoPage = () => {
   return (
     <div className="container my-5">
       <h1 className="display-5 fw-bold">Todos</h1>
-      <div className="col-lg-7 p-3 p-lg-5 pt-lg-3">
+      <div className="px-4 py-5">
         <form onSubmit={onCreate}>
           <div className="input-group mb-3">
             <input

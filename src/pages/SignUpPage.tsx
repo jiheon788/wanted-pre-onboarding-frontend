@@ -64,34 +64,41 @@ const SignUpPage = () => {
   }, []);
 
   return (
-    <>
-      <h1>SignUp</h1>
-      <form onSubmit={onSignUp}>
+    <div className="container my-5">
+      <h1 className="display-5 fw-bold">SignUp</h1>
+      <form onSubmit={onSignUp} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
         <input
           type="text"
+          className="form-control"
           placeholder="이메일을 입력해주세요"
           name="email"
           value={signUpdata.email}
           onChange={onChangeSignUpData}
           data-testid="email-input"
         />
-        {emailError && <div>{emailError.message}</div>}
+        {emailError && <div className="text-muted">{emailError.message}</div>}
 
         <input
           type="password"
+          className="form-control"
           placeholder="패스워드를 입력해주세요"
           name="password"
           value={signUpdata.password}
           onChange={onChangeSignUpData}
           data-testid="password-input"
         />
-        {passwordError && <div>{passwordError.message}</div>}
+        {passwordError && <div className="text-muted">{passwordError.message}</div>}
 
-        <button type="submit" data-testid="signup-button" disabled={emailError.isError || passwordError.isError}>
+        <button
+          type="submit"
+          className="btn btn-dark"
+          data-testid="signup-button"
+          disabled={emailError.isError || passwordError.isError}
+        >
           회원가입
         </button>
       </form>
-    </>
+    </div>
   );
 };
 

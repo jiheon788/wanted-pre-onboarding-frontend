@@ -14,6 +14,11 @@ const routerMeta: RouterMetaType = {
     path: '/',
     isShow: true,
   },
+  TodoPage: {
+    name: 'Todo',
+    path: '/todo',
+    isShow: true,
+  },
   SignInPage: {
     name: '로그인',
     path: '/signin',
@@ -22,11 +27,6 @@ const routerMeta: RouterMetaType = {
   SignUpPage: {
     name: '회원가입',
     path: '/signup',
-    isShow: true,
-  },
-  TodoPage: {
-    name: 'Todo',
-    path: '/todo',
     isShow: true,
   },
 };

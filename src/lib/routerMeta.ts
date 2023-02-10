@@ -24,6 +24,11 @@ const routerMeta: RouterMetaType = {
     path: '/signup',
     isShow: true,
   },
+  TodoPage: {
+    name: 'Todo',
+    path: '/todo',
+    isShow: true,
+  },
 };
 
 export default routerMeta;

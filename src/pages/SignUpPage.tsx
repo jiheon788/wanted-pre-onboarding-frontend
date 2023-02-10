@@ -49,7 +49,7 @@ const SignUpPage = () => {
     event.preventDefault();
     postSignUp(signUpdata)
       .then((res) => {
-        alert('회원가입이 성공하였습니다.');
+        alert(res.statusText);
         navigate('/signin');
       })
       .catch((err) => {

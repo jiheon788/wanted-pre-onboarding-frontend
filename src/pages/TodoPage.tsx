@@ -1,7 +1,7 @@
 import { ACCESS_TOKEN_KEY } from '@/constants/token.contant';
 import useInputs from '@/lib/hooks/useInputs';
 import token from '@/lib/token';
-import { createTodo, getTodos, updateTodo } from '@/repositories/todos/todosRepository';
+import { createTodo, deleteTodo, getTodos, updateTodo } from '@/repositories/todos/todosRepository';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -48,6 +48,12 @@ const TodoPage = () => {
     });
   };
 
+  const onClickDeleteButton = (id: number) => {
+    deleteTodo({ id }).then((_) => {
+      loadTodos();
+    });
+  };
+
   return (
     <>
       <form onSubmit={onCreate}>
@@ -66,7 +72,9 @@ const TodoPage = () => {
               <span>{todo.todo}</span>
             </label>
             <button data-testid="modify-button">수정</button>
-            <button data-testid="delete-button">삭제</button>
+            <button data-testid="delete-button" onClick={() => onClickDeleteButton(todo.id)}>
+              삭제
+            </button>
           </li>
         ))
       )}

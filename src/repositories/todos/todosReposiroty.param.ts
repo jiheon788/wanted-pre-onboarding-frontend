@@ -7,3 +7,7 @@ export interface updateTodoParam {
   isCompleted: boolean;
   id: number;
 }
+
+export interface deleteTodoParam {
+  id: number;
+}

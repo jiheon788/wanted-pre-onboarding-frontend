@@ -55,6 +55,7 @@ const SignInpage = () => {
         alert(res.statusText);
         token.setToken(ACCESS_TOKEN_KEY, res.data.access_token);
         navigate('/todo');
+        window.location.reload();
       })
       .catch((err) => {
         alert(err.response.data.message || err.message);

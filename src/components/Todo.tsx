@@ -5,12 +5,12 @@ import { useState } from 'react';
 
 interface ITodoProps {
   todo: ITodo;
-  onChangeTodos: (selectedTodo: ITodo) => void;
+  onCheckTodo: (selectedTodo: ITodo) => void;
   onClickDeleteButton: (id: number) => void;
   loadTodos: () => void;
 }
 
-const Todo = ({ todo, onChangeTodos, onClickDeleteButton, loadTodos }: ITodoProps) => {
+const Todo = ({ todo, onCheckTodo, onClickDeleteButton, loadTodos }: ITodoProps) => {
   const [isUpdate, setIsUpdate] = useState(false);
   const [todoEdit, onChangeTodoEdit] = useInputs(todo);
 
@@ -37,7 +37,7 @@ const Todo = ({ todo, onChangeTodos, onClickDeleteButton, loadTodos }: ITodoProp
               type="checkbox"
               className="form-check-input flex-shrink-0"
               checked={todo.isCompleted}
-              onChange={() => onChangeTodos(todo)}
+              onChange={() => onCheckTodo(todo)}
             />
             <input
               data-testid="modify-input"
@@ -68,7 +68,7 @@ const Todo = ({ todo, onChangeTodos, onClickDeleteButton, loadTodos }: ITodoProp
               type="checkbox"
               className="form-check-input flex-shrink-0"
               checked={todo.isCompleted}
-              onChange={() => onChangeTodos(todo)}
+              onChange={() => onCheckTodo(todo)}
             />
             <span className="pt-1 form-checked-content">{todo.todo}</span>
           </label>

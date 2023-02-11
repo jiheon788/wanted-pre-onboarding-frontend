@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import useInputs from '@/lib/hooks/useInputs';
 import { postSignUp } from '@/repositories/auth/authRepository';
 import { useNavigate } from 'react-router-dom';
 import token from '@/lib/token';
 import { ACCESS_TOKEN_KEY } from '@/constants/token.contant';
+import useValidation from '@/lib/hooks/useValidation';
 
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -12,40 +13,7 @@ const SignUpPage = () => {
     password: '',
   });
 
-  const [emailError, setEmailError] = useState({
-    message: '',
-    isError: true,
-  });
-  const [passwordError, setPasswordError] = useState({
-    message: '',
-    isError: true,
-  });
-
-  useEffect(() => {
-    if (!signUpdata.email.includes('@')) {
-      setEmailError({
-        message: '이메일에는 @가 포함되어야 합니다.',
-        isError: true,
-      });
-    } else {
-      setEmailError({
-        message: '유효한 이메일 입니다 :)',
-        isError: false,
-      });
-    }
-
-    if (signUpdata.password.length < 8) {
-      setPasswordError({
-        message: '패스워드는 8자 이상이어야 합니다.',
-        isError: true,
-      });
-    } else {
-      setPasswordError({
-        message: '유효한 패스워드 입니다 :)',
-        isError: false,
-      });
-    }
-  }, [signUpdata]);
+  const [emailStatus, passwordStatus] = useValidation(signUpdata);
 
   const onSignUp = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -55,7 +23,7 @@ const SignUpPage = () => {
         navigate('/signin');
       })
       .catch((err) => {
-        alert(err.response.data.message || err.message);
+        alert(err.response.data.log || err.log);
       });
   };
 
@@ -76,24 +44,25 @@ const SignUpPage = () => {
           onChange={onChangeSignUpData}
           data-testid="email-input"
         />
-        {emailError && <div className="text-muted">{emailError.message}</div>}
+        {emailStatus && <div className="text-muted">{emailStatus.log}</div>}
 
         <input
           type="password"
           className="form-control"
           placeholder="패스워드를 입력해주세요"
           name="password"
+          autoComplete="off"
           value={signUpdata.password}
           onChange={onChangeSignUpData}
           data-testid="password-input"
         />
-        {passwordError && <div className="text-muted">{passwordError.message}</div>}
+        {passwordStatus && <div className="text-muted">{passwordStatus.log}</div>}
 
         <button
           type="submit"
           className="btn btn-dark"
           data-testid="signup-button"
-          disabled={emailError.isError || passwordError.isError}
+          disabled={emailStatus.isError || passwordStatus.isError}
         >
           회원가입
         </button>

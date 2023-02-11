@@ -12,16 +12,11 @@ const apiClient = axios.create({
   },
 });
 
-/**
- * 디버깅 코드
- */
 apiClient.interceptors.response.use(
   (response) => {
-    console.log('response success: ', response);
     return response;
   },
   (error) => {
-    console.log('response error: ', error);
     return Promise.reject(error);
   },
 );

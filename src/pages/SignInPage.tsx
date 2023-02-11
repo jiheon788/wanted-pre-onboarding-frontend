@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import useInputs from '@/lib/hooks/useInputs';
 import { postSignIn } from '@/repositories/auth/authRepository';
 import { useNavigate } from 'react-router-dom';
@@ -19,7 +19,6 @@ const SignInpage = () => {
     event.preventDefault();
     postSignIn(signInData)
       .then((res) => {
-        alert(res.statusText);
         token.setToken(ACCESS_TOKEN_KEY, res.data.access_token);
         navigate('/todo');
         window.location.reload();
@@ -52,6 +51,7 @@ const SignInpage = () => {
           type="password"
           className="form-control"
           placeholder="패스워드를 입력해주세요"
+          autoComplete="off"
           name="password"
           value={signInData.password}
           onChange={onChangeSignInData}

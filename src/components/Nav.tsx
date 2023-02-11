@@ -13,7 +13,7 @@ const Nav = () => {
   return (
     <nav className="py-2 border-bottom">
       <div className="container d-flex flex-wrap">
-        <ul className="nav me-auto">
+        <ul className="nav me-auto ">
           {Object.keys(routerMeta).map((componentKey: string, index: number) => {
             const menu: IRouterMeta = routerMeta[componentKey];
 

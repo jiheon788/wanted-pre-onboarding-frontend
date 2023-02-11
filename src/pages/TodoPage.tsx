@@ -16,7 +16,7 @@ export interface ITodo {
 const TodoPage = () => {
   const navigate = useNavigate();
   const [todos, setTodos] = useState([]);
-  const [todoData, onChangeTodoData, setTodoData] = useInputs({ todo: '' });
+  const [newTodo, onChangeNewTodo, setNewTodo] = useInputs({ todo: '' });
 
   useEffect(() => {
     if (!token.getToken(ACCESS_TOKEN_KEY)) navigate('/signin');
@@ -34,14 +34,13 @@ const TodoPage = () => {
 
   const onCreate = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    createTodo(todoData).then((_) => {
+    createTodo(newTodo).then((_) => {
       loadTodos();
-
-      setTodoData({ todo: '' });
+      setNewTodo({ todo: '' });
     });
   };
 
-  const onChangeTodos = (selectedTodo: ITodo) => {
+  const onCheckTodo = (selectedTodo: ITodo) => {
     let { todo, isCompleted, id } = selectedTodo;
     isCompleted = !isCompleted;
     updateTodo({ todo, isCompleted, id }).then((_) => {
@@ -67,8 +66,8 @@ const TodoPage = () => {
               placeholder="할 일을 입력해주세요."
               data-testid="new-todo-input"
               name="todo"
-              value={todoData.todo}
-              onChange={onChangeTodoData}
+              value={newTodo.todo}
+              onChange={onChangeNewTodo}
             />
             <button className="btn btn-dark" type="submit" data-testid="new-todo-add-button">
               추가
@@ -83,7 +82,7 @@ const TodoPage = () => {
               <Todo
                 key={todo.id}
                 todo={todo}
-                onChangeTodos={onChangeTodos}
+                onCheckTodo={onCheckTodo}
                 onClickDeleteButton={onClickDeleteButton}
                 loadTodos={loadTodos}
               />

@@ -51,6 +51,7 @@ const SignUpPage = () => {
           className="form-control"
           placeholder="패스워드를 입력해주세요"
           name="password"
+          autoComplete="off"
           value={signUpdata.password}
           onChange={onChangeSignUpData}
           data-testid="password-input"
